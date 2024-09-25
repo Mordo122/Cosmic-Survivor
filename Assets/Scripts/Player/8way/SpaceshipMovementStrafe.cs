@@ -9,6 +9,11 @@ public class SpaceshipMovementStrafe : MonoBehaviour
     public float maxSpeed = 5f;      // Maximum speed for the spaceship
     public float drag = 0.9f;        // Controls how fast the ship slows down (affects inertia)
 
+    // Shooting variables
+    public GameObject projectilePrefab; // Prefab for the projectile
+    public Transform firePoint;         // The point from where the projectile will be fired
+    public float projectileSpeed = 10f; // Speed of the projectile
+
     private Rigidbody2D rb;
     private Camera mainCamera;
 
@@ -44,6 +49,12 @@ public class SpaceshipMovementStrafe : MonoBehaviour
 
         // Rotate spaceship to face the cursor
         RotateTowardsMouse();
+
+        // Shoot projectile on mouse click
+        if (Input.GetMouseButtonDown(0))  // Left mouse button
+        {
+            ShootProjectile();
+        }
     }
 
     void RotateTowardsMouse()
@@ -60,6 +71,26 @@ public class SpaceshipMovementStrafe : MonoBehaviour
         // Apply the rotation to the spaceship
         rb.rotation = angle;
     }
+
+    void ShootProjectile()
+    {
+        if (projectilePrefab != null && firePoint != null)
+        {
+            // Instantiate the projectile at the fire point
+            GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+
+            // Get the Rigidbody2D component of the projectile
+            Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
+
+            // Set the velocity of the projectile in the direction the firePoint is facing
+            projectileRb.velocity = firePoint.up * projectileSpeed;  // Use 'up' as the firePoint's forward direction
+        }
+        else
+        {
+            Debug.LogWarning("Projectile Prefab or Fire Point not set!");
+        }
+    }
 }
+
 
 

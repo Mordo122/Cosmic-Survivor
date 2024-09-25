@@ -246,3 +246,137 @@ public class SpaceshipMovement : MonoBehaviour
 ### Final Result:
 - Now, the **top of the spaceship** will always point towards the mouse cursor while the movement remains controlled by the player's input (`WASD` or arrow keys).
 - This is perfect for a spaceship shooter where the player aims with the mouse while navigating in a 2D space.
+
+
+ITERATION 3
+To add shooting functionality where the spaceship fires a projectile when the player presses a button (e.g., the left mouse button), you'll need to spawn a projectile prefab and launch it in the direction the spaceship is facing (towards the mouse cursor).
+
+### Key Steps:
+1. **Create a Projectile Prefab**: A simple 2D GameObject with a `Rigidbody2D` component and a collider (e.g., a circle collider) for the projectile.
+2. **Spawn the Projectile**: When the player presses the fire button, instantiate the projectile at the spaceship's position and set its velocity.
+3. **Launch the Projectile**: Apply velocity to the projectile in the direction the spaceship is facing.
+
+### Updated Code (Shooting Projectiles on Mouse Press)
+
+```csharp
+using UnityEngine;
+
+public class SpaceshipMovement : MonoBehaviour
+{
+    // Movement variables
+    public float thrustForce = 10f;  // Controls the force applied when moving
+    public float maxSpeed = 5f;      // Maximum speed for the spaceship
+    public float drag = 0.9f;        // Controls how fast the ship slows down (affects inertia)
+
+    // Shooting variables
+    public GameObject projectilePrefab; // Prefab for the projectile
+    public Transform firePoint;         // The point from where the projectile will be fired
+    public float projectileSpeed = 10f; // Speed of the projectile
+
+    private Rigidbody2D rb;
+    private Camera mainCamera;
+
+    void Start()
+    {
+        // Get the Rigidbody2D component
+        rb = GetComponent<Rigidbody2D>();
+        
+        // Set the camera (required to convert screen point to world point)
+        mainCamera = Camera.main;
+
+        // Optionally set linear drag if needed
+        rb.drag = drag; // Tweak this for a better floaty effect
+    }
+
+    void Update()
+    {
+        // Get the input for movement
+        Vector2 movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+
+        // Apply force based on input direction
+        if (movementInput != Vector2.zero)
+        {
+            // Add force in the direction of the input
+            rb.AddForce(movementInput * thrustForce);
+
+            // Limit the velocity to the maximum speed to avoid too fast movement
+            if (rb.velocity.magnitude > maxSpeed)
+            {
+                rb.velocity = rb.velocity.normalized * maxSpeed;
+            }
+        }
+
+        // Rotate spaceship to face the cursor
+        RotateTowardsMouse();
+
+        // Shoot projectile on mouse click
+        if (Input.GetMouseButtonDown(0))  // Left mouse button
+        {
+            ShootProjectile();
+        }
+    }
+
+    void RotateTowardsMouse()
+    {
+        // Get mouse position in world space
+        Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+
+        // Calculate the direction to the mouse
+        Vector2 direction = (mousePosition - transform.position).normalized;
+
+        // Calculate the angle in degrees (top of object is the y-axis, so add 90 degrees)
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+
+        // Apply the rotation to the spaceship
+        rb.rotation = angle;
+    }
+
+    void ShootProjectile()
+    {
+        if (projectilePrefab != null && firePoint != null)
+        {
+            // Instantiate the projectile at the fire point
+            GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+
+            // Get the Rigidbody2D component of the projectile
+            Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
+
+            // Set the velocity of the projectile in the direction the firePoint is facing
+            projectileRb.velocity = firePoint.up * projectileSpeed;  // Use 'up' as the firePoint's forward direction
+        }
+        else
+        {
+            Debug.LogWarning("Projectile Prefab or Fire Point not set!");
+        }
+    }
+}
+```
+
+### Key Additions:
+1. **Projectile Prefab (`GameObject projectilePrefab`)**: This holds a reference to the projectile prefab that you will instantiate when shooting.
+   
+2. **Fire Point (`Transform firePoint`)**: A point from where the projectile will be fired. You can create an empty GameObject attached to the spaceship, positioned where you want the projectiles to spawn (usually at the front).
+
+3. **Shooting Functionality (`ShootProjectile`)**:
+    - When the left mouse button (`Input.GetMouseButtonDown(0)`) is pressed, the `ShootProjectile` method is called.
+    - The projectile is instantiated at the fire point (`firePoint.position`) and inherits the rotation of the spaceship.
+    - The projectile's velocity is set to move in the direction of the spaceship's "up" vector (`firePoint.up * projectileSpeed`), which corresponds to the forward direction.
+
+### Projectile Prefab Setup:
+1. **Create the Projectile Prefab**:
+    - Create a new 2D GameObject (like a small sprite or shape) and name it "Projectile".
+    - Add a `Rigidbody2D` component (set its body type to **Dynamic**).
+    - Add a `CircleCollider2D` or other collider type depending on your projectile.
+    - Optionally, add a script to handle projectile destruction (e.g., destroy after some time or upon collision).
+   
+2. **Set Prefab in Inspector**:
+    - In the Unity editor, drag your projectile prefab into the `projectilePrefab` field of the script attached to your spaceship.
+    - Create an empty GameObject at the tip of the spaceship, where the projectiles should be fired from. Assign this as the `firePoint`.
+
+### Final Result:
+- The spaceship moves and rotates as before, with the top always facing the mouse.
+- When the player presses the left mouse button, a projectile is fired from the fire point in the direction the spaceship is facing, moving at the specified `projectileSpeed`.
+
+### Optional Tweaks:
+- **Fire Rate**: You can add a cooldown timer to control how frequently the player can shoot (e.g., limit the firing rate to one shot every 0.2 seconds).
+- **Projectile Lifetime**: You can add a script to destroy the projectile after a certain distance or time to avoid cluttering the scene.
