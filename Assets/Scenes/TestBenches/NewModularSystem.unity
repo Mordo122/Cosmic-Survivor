@@ -398,6 +398,7 @@ MonoBehaviour:
   thrustForce: 1
   maxSpeed: 5
   drag: 0.9
+  rotationSpeed: 180
 --- !u!114 &980693308
 MonoBehaviour:
   m_ObjectHideFlags: 0
