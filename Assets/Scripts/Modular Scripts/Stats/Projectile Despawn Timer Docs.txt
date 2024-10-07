@@ -1,0 +1,68 @@
+To add a **despawn time** for the projectiles in your `Projectile.cs` script, you can set a lifespan for each projectile after which it will automatically destroy itself.
+
+Here's how you can modify your `Projectile.cs` to include a despawn time:
+
+### Updated `Projectile.cs` Script with Despawn Time
+
+```csharp
+using UnityEngine;
+
+public class Projectile : MonoBehaviour
+{
+    public float baseDamage = 10f;   // Base damage of the projectile
+    public float damage;             // Final damage (after multiplier)
+    public float despawnTime = 5f;   // Time in seconds before the projectile is automatically destroyed
+
+    void Start()
+    {
+        // Schedule the projectile to be destroyed after `despawnTime` seconds
+        Destroy(gameObject, despawnTime);
+    }
+
+    // Example method when projectile hits something
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Try to get the ShipStats component from the object it collided with
+        ShipStats targetStats = collision.GetComponent<ShipStats>();
+        if (targetStats != null)
+        {
+            // Apply damage to the target
+            targetStats.TakeDamage(damage);
+        }
+
+        // Destroy the projectile after hitting something
+        Destroy(gameObject);
+    }
+}
+```
+
+### Key Additions:
+
+1. **`despawnTime` Variable**:
+   - This is a public variable that defines how long the projectile will exist before it automatically despawns.
+   - You can set the value in the Unity Editor for each projectile prefab, or you can adjust it dynamically in code if necessary.
+
+2. **`Destroy(gameObject, despawnTime)`**:
+   - This method schedules the projectile to be destroyed after a specific amount of time. In this case, after `despawnTime` seconds.
+   - By placing it in the `Start()` method, the projectile will be destroyed automatically after it is instantiated, even if it doesn’t hit anything.
+
+### How it Works:
+- **Projectile Lifespan**: When a projectile is instantiated, it will automatically destroy itself after the specified `despawnTime` has passed (e.g., 5 seconds).
+- **Collision Handling**: If the projectile hits a target before the `despawnTime`, it is destroyed immediately after dealing damage using `Destroy(gameObject)`.
+
+### Despawn Time in Unity:
+1. **In the Inspector**: You can now modify the `despawnTime` directly in the Unity Inspector by selecting the projectile prefab and adjusting the value to control how long the projectile stays alive.
+   
+2. **Default Despawn Time**: If no changes are made in the Inspector, the default despawn time will be 5 seconds as defined in the script.
+
+### Optional: Dynamic Despawn Time
+If you want to dynamically set the despawn time based on gameplay conditions (for example, some projectiles may last longer), you can do so by setting the `despawnTime` value programmatically before instantiating or shortly after instantiating the projectile.
+
+Example:
+```csharp
+GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+Projectile projectileScript = projectile.GetComponent<Projectile>();
+projectileScript.despawnTime = 3f; // Set a custom despawn time for this instance
+```
+
+This setup ensures your projectiles won't linger indefinitely in the scene and will clean up after a set time, reducing memory usage and keeping the game performant.
