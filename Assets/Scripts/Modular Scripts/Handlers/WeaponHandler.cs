@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class WeaponHandler : MonoBehaviour
 {
-    public GameObject projectilePrefab; // Prefab for the projectile
-    public Transform firePoint;         // The point from where the projectile will be fired
-    public float projectileSpeed = 10f; // Speed of the projectile
-    public float shootingInterval = 1f; // Time between shots
-
+    public GameObject projectilePrefab;
+    public Transform firePoint;
+    public float projectileSpeed = 10f;
+    public float shootingInterval = 1f;
     private float timeSinceLastShot = 0f;
+
+    private ShipStats shipStats; // Reference to ShipStats
+
+    void Start()
+    {
+        // Get the ShipStats component
+        shipStats = GetComponent<ShipStats>();
+    }
 
     void Update()
     {
         timeSinceLastShot += Time.deltaTime;
     }
 
-    // Call this method to fire a projectile
     public void Shoot()
     {
         if (timeSinceLastShot >= shootingInterval && projectilePrefab != null && firePoint != null)
@@ -24,11 +30,18 @@ public class WeaponHandler : MonoBehaviour
             // Instantiate the projectile
             GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
 
-            // Get the Rigidbody2D of the projectile and apply velocity
+            // Apply damage multiplier to the projectile's damage
+            Projectile projectileScript = projectile.GetComponent<Projectile>();
+            if (projectileScript != null && shipStats != null)
+            {
+                projectileScript.damage = shipStats.ApplyDamageMultiplier(projectileScript.baseDamage);
+            }
+
+            // Set the velocity of the projectile
             Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
             projectileRb.velocity = firePoint.up * projectileSpeed;
 
-            timeSinceLastShot = 0f; // Reset the timer after shooting
+            timeSinceLastShot = 0f; // Reset shooting timer
         }
     }
 }
