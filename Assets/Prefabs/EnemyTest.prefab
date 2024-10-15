@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 2285573981477398899}
   m_Layer: 0
   m_Name: EnemyTest
-  m_TagString: Untagged
+  m_TagString: SmallEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,6 +129,7 @@ MonoBehaviour:
   thrustForce: 1
   maxSpeed: 5
   drag: 0.9
+  rotationSpeed: 180
 --- !u!114 &2285573981477398892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseDamage: 10
   damage: 1
+  despawnTime: 5
 --- !u!114 &2285573981477398897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,7 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currentHealth: 1
+  currentHealth: 100
   maxShield: 50
   currentShield: 0
   shieldRegenRate: 5

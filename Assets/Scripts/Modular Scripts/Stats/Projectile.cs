@@ -23,6 +23,18 @@ public class Projectile : MonoBehaviour
         {
             // Apply damage to the target
             targetStats.TakeDamage(damage);
+
+
+            // Check if the target ship was destroyed
+            if (targetStats.currentHealth <= 0)
+            {
+                // If it was destroyed, give the player XP based on the tag
+                PlayerXP playerXP = FindObjectOfType<PlayerXP>();
+                if (playerXP != null)
+                {
+                    playerXP.AddXPBasedOnTag(collision.tag); // Check the tag of the destroyed ship
+                }
+            }
         }
 
         // Destroy the projectile after hitting something

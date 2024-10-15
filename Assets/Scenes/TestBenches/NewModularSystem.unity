@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 552472583}
   - component: {fileID: 552472582}
   - component: {fileID: 552472581}
+  - component: {fileID: 552472584}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -207,6 +208,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &552472584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552472580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b36ebb361213c8447bd51f040ad75896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 980693305}
+  offset: 0
+  smoothing: 0.1
+  zoomOutFactor: 0.5
 --- !u!1 &775670005
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,7 +236,7 @@ GameObject:
   - component: {fileID: 775670006}
   m_Layer: 0
   m_Name: EnemySpawner
-  m_TagString: Untagged
+  m_TagString: SmallEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -270,6 +287,7 @@ GameObject:
   - component: {fileID: 980693307}
   - component: {fileID: 980693306}
   - component: {fileID: 980693310}
+  - component: {fileID: 980693313}
   - component: {fileID: 980693312}
   m_Layer: 0
   m_Name: PlayerTest
@@ -458,6 +476,25 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.05
+--- !u!114 &980693313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980693301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b090e1621f842c44bd78704c922383d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentLevel: 1
+  currentXP: 0
+  xpToNextLevel: 100
+  xpIncreasePerLevel: 50
+  smallEnemyXP: 10
+  mediumEnemyXP: 25
+  largeEnemyXP: 50
 --- !u!1 &1765717759
 GameObject:
   m_ObjectHideFlags: 0

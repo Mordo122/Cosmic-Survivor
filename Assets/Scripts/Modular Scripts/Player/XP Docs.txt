@@ -1,0 +1,151 @@
+To create an **XP system** where the player gains experience points (XP) when destroying enemy ships based on their tags, and the player levels up after reaching certain XP thresholds, we can break it down into the following steps:
+
+### Key Features:
+1. **XP based on Enemy Tags**: The player receives a different amount of XP depending on the tag of the ship that is destroyed.
+2. **Leveling Up**: The player levels up when a certain amount of XP is reached.
+3. **Public Variables**: These will be kept public for easy adjustment and linking with other scripts, such as UI updates or gameplay events.
+
+### `PlayerXP.cs` Script
+
+```csharp
+using UnityEngine;
+
+public class PlayerXP : MonoBehaviour
+{
+    // XP and Leveling variables
+    public int currentLevel = 1;               // Player's current level
+    public float currentXP = 0f;               // Player's current XP
+    public float xpToNextLevel = 100f;         // XP needed to level up
+    public float xpIncreasePerLevel = 50f;     // How much more XP is required per level up
+
+    // XP rewards based on ship tags
+    public float smallEnemyXP = 10f;           // XP for destroying a small enemy
+    public float mediumEnemyXP = 25f;          // XP for destroying a medium enemy
+    public float largeEnemyXP = 50f;           // XP for destroying a large enemy
+
+    // Method to add XP based on the tag of the destroyed enemy
+    public void AddXPBasedOnTag(string tag)
+    {
+        float xpToAdd = 0f;
+
+        // Add XP based on the enemy tag
+        switch (tag)
+        {
+            case "SmallEnemy":
+                xpToAdd = smallEnemyXP;
+                break;
+            case "MediumEnemy":
+                xpToAdd = mediumEnemyXP;
+                break;
+            case "LargeEnemy":
+                xpToAdd = largeEnemyXP;
+                break;
+            default:
+                Debug.LogWarning("Unknown enemy tag: " + tag);
+                break;
+        }
+
+        // Add the XP
+        AddXP(xpToAdd);
+    }
+
+    // Method to add XP and check for level up
+    public void AddXP(float xpAmount)
+    {
+        currentXP += xpAmount;
+        Debug.Log("Gained " + xpAmount + " XP!");
+
+        // Check if the player has enough XP to level up
+        while (currentXP >= xpToNextLevel)
+        {
+            LevelUp();
+        }
+    }
+
+    // Method to handle leveling up
+    private void LevelUp()
+    {
+        currentXP -= xpToNextLevel;   // Deduct XP required for the current level
+        currentLevel++;               // Increase the player's level
+        xpToNextLevel += xpIncreasePerLevel; // Increase the XP needed for the next level
+
+        Debug.Log("Leveled up! New Level: " + currentLevel);
+    }
+}
+```
+
+### Key Features Explained:
+
+1. **XP and Level Variables**:
+   - **`currentLevel`**: Tracks the player’s current level.
+   - **`currentXP`**: Tracks how much XP the player has accumulated.
+   - **`xpToNextLevel`**: Determines how much XP is required to level up.
+   - **`xpIncreasePerLevel`**: Controls how much additional XP is required to level up after each level.
+
+2. **XP Rewards Based on Tags**:
+   - **`smallEnemyXP`, `mediumEnemyXP`, `largeEnemyXP`**: These public variables define how much XP is awarded when the player destroys enemies of different sizes (or difficulties), based on their tags.
+   - The `AddXPBasedOnTag()` method checks the tag of the destroyed ship and gives the appropriate amount of XP.
+
+3. **Leveling System**:
+   - **`AddXP(float xpAmount)`**: Adds XP to the player’s current XP and checks whether the player has enough XP to level up.
+   - **`LevelUp()`**: Handles the leveling up process, deducts XP for the level, and increases the XP required for the next level.
+
+4. **Switch-Case for Tags**:
+   - Based on the enemy’s tag, the appropriate XP amount is added. You can expand or modify the tags and rewards as needed for your game.
+
+### Integrating with Enemy Destruction:
+
+To ensure the player gains XP when an enemy ship is destroyed, you’ll need to call the `AddXPBasedOnTag` method from the `PlayerXP` script when an enemy ship is destroyed.
+
+For example, in your **`Projectile`** or **`ShipStats`** script where you detect collisions, you could do something like this:
+
+### Example Enemy Destruction Integration
+
+```csharp
+public class Projectile : MonoBehaviour
+{
+    public float baseDamage = 10f;   // Base damage of the projectile
+    public float damage;             // Final damage (after multiplier)
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        ShipStats targetStats = collision.GetComponent<ShipStats>();
+        if (targetStats != null)
+        {
+            // Apply damage to the target
+            targetStats.TakeDamage(damage);
+
+            // Check if the target ship was destroyed
+            if (targetStats.currentHealth <= 0)
+            {
+                // If it was destroyed, give the player XP based on the tag
+                PlayerXP playerXP = FindObjectOfType<PlayerXP>();
+                if (playerXP != null)
+                {
+                    playerXP.AddXPBasedOnTag(collision.tag); // Check the tag of the destroyed ship
+                }
+            }
+        }
+
+        // Destroy the projectile after impact
+        Destroy(gameObject);
+    }
+}
+```
+
+### Integration Explanation:
+
+1. **Detect Enemy Destruction**:
+   - In this example, after damaging a target ship, we check if its health is below or equal to 0 (meaning it was destroyed).
+   
+2. **Grant XP to the Player**:
+   - When the enemy ship is destroyed, the `PlayerXP` script is referenced and the **`AddXPBasedOnTag`** method is called. The tag of the destroyed enemy is passed, and XP is granted accordingly.
+   
+3. **Projectile Cleanup**:
+   - After the projectile hits an enemy, it is destroyed, as usual.
+
+### Summary:
+- The **`PlayerXP`** script handles the player’s XP and leveling system, allowing XP gain based on enemy tags.
+- The XP rewards are configurable using public variables, and the system can be easily expanded to handle more types of enemies.
+- The **`AddXPBasedOnTag`** method checks the tag of the destroyed enemy and grants the appropriate amount of XP, which is then checked to see if the player levels up.
+- This script can be linked to other systems in your game (like UI or stats) by referencing the public variables for **current XP**, **current level**, and more.
