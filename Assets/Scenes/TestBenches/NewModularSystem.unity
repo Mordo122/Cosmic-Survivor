@@ -647,6 +647,7 @@ GameObject:
   - component: {fileID: 1767885477}
   - component: {fileID: 1767885479}
   - component: {fileID: 1767885478}
+  - component: {fileID: 1767885480}
   m_Layer: 0
   m_Name: WeaponTest (1)
   m_TagString: Player
@@ -739,6 +740,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1767885480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767885476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20de7c657ee827f4aa20dc798ee46baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 797789209714689714, guid: c5e44e824c2e67744a508797602659b6, type: 3}
+  firePoint: {fileID: 1805199345}
+  projectileSpeed: 10
+  shootingInterval: 1
 --- !u!1 &1805199344
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,6 +798,7 @@ GameObject:
   - component: {fileID: 2056333857}
   - component: {fileID: 2056333858}
   - component: {fileID: 2056333859}
+  - component: {fileID: 2056333860}
   m_Layer: 0
   m_Name: WeaponTest
   m_TagString: Player
@@ -873,3 +891,19 @@ MonoBehaviour:
   fireRate: 10
   detectionRange: 10
   detectionAngle: 90
+--- !u!114 &2056333860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056333856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20de7c657ee827f4aa20dc798ee46baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 797789209714689714, guid: c5e44e824c2e67744a508797602659b6, type: 3}
+  firePoint: {fileID: 1641430762}
+  projectileSpeed: 10
+  shootingInterval: 1
