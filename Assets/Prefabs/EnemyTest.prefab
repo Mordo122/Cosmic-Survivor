@@ -11,16 +11,16 @@ GameObject:
   - component: {fileID: 2285573981477398896}
   - component: {fileID: 2285573981477398895}
   - component: {fileID: 2285573981477398894}
+  - component: {fileID: 2194486646308360873}
   - component: {fileID: 2285573981477398893}
   - component: {fileID: 2285573981477398892}
   - component: {fileID: 2285573981477398891}
   - component: {fileID: 2285573981477398890}
-  - component: {fileID: 2285573981477398898}
   - component: {fileID: 2285573981477398897}
   - component: {fileID: 2285573981477398899}
   m_Layer: 0
   m_Name: EnemyTest
-  m_TagString: SmallEnemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,6 +114,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2194486646308360873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2285573981477398889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08a91d3a84e35924f81b8679e7ae4c93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 50
 --- !u!114 &2285573981477398893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,21 +185,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
---- !u!114 &2285573981477398898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2285573981477398889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19fb68b62f9101d4bb201ffba3d482d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseDamage: 10
-  damage: 1
-  despawnTime: 5
 --- !u!114 &2285573981477398897
 MonoBehaviour:
   m_ObjectHideFlags: 0
