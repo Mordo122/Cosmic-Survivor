@@ -6,6 +6,7 @@ public class Weapon : MonoBehaviour
 {
     public Transform firePoint;        // Where the weapon fires from
     public GameObject projectilePrefab;  // The projectile to shoot
+    public float projectileSpeed;
     public float fireRate = 1f;         // Time between shots
     public float detectionRange = 10f;  // How far the turret can detect enemies
     public float detectionAngle = 90f;  // The turret's firing arc (in degrees)
@@ -63,7 +64,7 @@ public class Weapon : MonoBehaviour
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
 
         // Apply velocity to the projectile to make it move forward
-        rb.velocity = firePoint.up * 10;
+        rb.velocity = firePoint.up * projectileSpeed;
         Debug.Log("Projectile velocity: " + rb.velocity);
         
 
@@ -84,7 +85,12 @@ public class Weapon : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, angle-90);
 
         // Fire the projectile
-        Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+
+        // Set the velocity of the projectile
+        Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
+        projectileRb.velocity = firePoint.up * projectileSpeed;
+
         nextFireTime = Time.time + 1f / fireRate;
 
         Debug.Log("AI shooting at " + target.name);
