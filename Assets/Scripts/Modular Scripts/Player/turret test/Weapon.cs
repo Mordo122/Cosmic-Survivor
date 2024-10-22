@@ -63,7 +63,7 @@ public class Weapon : MonoBehaviour
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
 
         // Apply velocity to the projectile to make it move forward
-        rb.velocity = firePoint.forward * 10;
+        rb.velocity = firePoint.up * 10;
         Debug.Log("Projectile velocity: " + rb.velocity);
         
 
@@ -74,11 +74,23 @@ public class Weapon : MonoBehaviour
     // Shoot at a specific target (AI-controlled)
     private void ShootAtTarget(Transform target)
     {
-        firePoint.LookAt(target);  // Aim at the target
+        // Calculate the direction to the target
+        Vector2 directionToTarget = (target.position - transform.position).normalized;
+
+        // Calculate the angle in degrees (from the weapon to the target)
+        float angle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg;
+
+        // Rotate the entire weapon (its body) towards the target
+        transform.rotation = Quaternion.Euler(0, 0, angle-90);
+
+        // Fire the projectile
         Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         nextFireTime = Time.time + 1f / fireRate;
+
         Debug.Log("AI shooting at " + target.name);
     }
+
+
 
     // Scan for enemies in range and within the arc
     private Transform ScanForEnemies()
