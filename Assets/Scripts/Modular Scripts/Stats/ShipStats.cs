@@ -14,13 +14,19 @@ public class ShipStats : MonoBehaviour
     public float damageMultiplier = 1.5f;  // Multiplier for outgoing damage
 
     private float timeSinceLastDamage;  // Time since the last time the ship took damage
+ 
+   
 
     void Start()
     {
         // Initialize health and shield to their maximum values
         currentHealth = maxHealth;
         currentShield = maxShield;
+       
     }
+
+
+ 
 
     void Update()
     {
@@ -93,5 +99,6 @@ public class ShipStats : MonoBehaviour
     {
         return baseDamage * damageMultiplier;
     }
+
 }
 
