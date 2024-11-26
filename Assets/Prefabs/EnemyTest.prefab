@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 2285573981477398896}
   - component: {fileID: 2285573981477398895}
   - component: {fileID: 2285573981477398894}
-  - component: {fileID: 2194486646308360873}
   - component: {fileID: 2285573981477398893}
   - component: {fileID: 2285573981477398892}
   - component: {fileID: 2285573981477398891}
   - component: {fileID: 2285573981477398890}
-  - component: {fileID: 2285573981477398897}
   - component: {fileID: 2285573981477398899}
+  - component: {fileID: 6800067501969289624}
+  - component: {fileID: -6167226145865514577}
   m_Layer: 0
   m_Name: EnemyTest
   m_TagString: Enemy
@@ -114,19 +114,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2194486646308360873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2285573981477398889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08a91d3a84e35924f81b8679e7ae4c93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 1
 --- !u!114 &2285573981477398893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,25 +172,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
---- !u!114 &2285573981477398897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2285573981477398889}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d9fb5f2677062a4c9fad94de81ddb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 1
-  maxShield: 50
-  currentShield: 0
-  shieldRegenRate: 5
-  shieldRegenCooldown: 3
-  damageMultiplier: 1.5
 --- !u!58 &2285573981477398899
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -220,6 +188,41 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.011374831}
   serializedVersion: 2
   m_Radius: 0.21288335
+--- !u!114 &6800067501969289624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2285573981477398889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc5b069517b08744587dfbe912122b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drops:
+  - name: XP Shard
+    ItemPrefab: {fileID: 8317510752295209932, guid: f0e2ab57776541b4bb35e60031f8f587, type: 3}
+    DropRate: 100
+--- !u!114 &-6167226145865514577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2285573981477398889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d9fb5f2677062a4c9fad94de81ddb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  currentHealth: 0
+  maxShield: 0
+  currentShield: 0
+  shieldRegenRate: 5
+  shieldRegenCooldown: 3
+  damageMultiplier: 1.5
 --- !u!1 &2285573981929264536
 GameObject:
   m_ObjectHideFlags: 0

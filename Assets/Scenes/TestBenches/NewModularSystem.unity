@@ -419,7 +419,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 61eb3a38a69ad5640a8731b822d268d2, type: 3}
 --- !u!1 &980693301
 GameObject:
@@ -437,9 +438,10 @@ GameObject:
   - component: {fileID: 980693307}
   - component: {fileID: 980693306}
   - component: {fileID: 980693310}
-  - component: {fileID: 980693313}
   - component: {fileID: 980693314}
   - component: {fileID: 980693312}
+  - component: {fileID: 980693315}
+  - component: {fileID: 980693316}
   m_Layer: 0
   m_Name: PlayerTest
   m_TagString: Player
@@ -629,25 +631,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.44688657}
   serializedVersion: 2
   m_Radius: 0.21542212
---- !u!114 &980693313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 980693301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b090e1621f842c44bd78704c922383d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentLevel: 1
-  currentXP: 0
-  xpToNextLevel: 100
-  xpIncreasePerLevel: 50
-  smallEnemyXP: 10
-  mediumEnemyXP: 25
-  largeEnemyXP: 50
 --- !u!114 &980693314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -663,6 +646,61 @@ MonoBehaviour:
   weaponSlots:
   - {fileID: 1767885478}
   - {fileID: 2056333859}
+--- !u!114 &980693315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980693301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e49d0437363a7b4cab447dd04137df6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &980693316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980693301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab830eed03f8ce842a271e0f375ed3c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Level: 1
+  exp: 0
+  xpCap: 0
+  levelRanges:
+  - startLevel: 1
+    endLevel: 3
+    xpCapIncrease: 300
+  - startLevel: 4
+    endLevel: 7
+    xpCapIncrease: 500
+  - startLevel: 8
+    endLevel: 14
+    xpCapIncrease: 600
+  - startLevel: 15
+    endLevel: 26
+    xpCapIncrease: 800
+  - startLevel: 27
+    endLevel: 42
+    xpCapIncrease: 900
+  - startLevel: 43
+    endLevel: 67
+    xpCapIncrease: 900
+  - startLevel: 68
+    endLevel: 82
+    xpCapIncrease: 1000
+  - startLevel: 83
+    endLevel: 100
+    xpCapIncrease: 1200
+  - startLevel: 101
+    endLevel: 9999999
+    xpCapIncrease: 1400
 --- !u!1 &1641430761
 GameObject:
   m_ObjectHideFlags: 0
