@@ -1665,6 +1665,7 @@ MonoBehaviour:
   shieldRegenRate: 5
   shieldRegenCooldown: 3
   damageMultiplier: 1.5
+  magnet: 0
 --- !u!58 &980693312
 CircleCollider2D:
   m_ObjectHideFlags: 0
