@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemyPrefab;     // Enemy prefab to spawn
-    public float spawnFrequency = 2f;  // Time between each spawn, editable in the Inspector
-    public float spawnDistance = 5f;   // Distance outside the screen where enemies spawn
+    public GameObject enemyPrefab;      // Enemy prefab to spawn
+    public float baseSpawnFrequency = 2f;  // Base time between spawns
+    public float spawnDistance = 5f;    // Distance outside the screen where enemies spawn
 
-    private Camera mainCamera;         // Reference to the main camera
+    private Camera mainCamera;          // Reference to the main camera
+
+    // Reference to the LevelUp script
+    public LevelUp levelUp;
 
     void Start()
     {
@@ -25,7 +28,10 @@ public class EnemySpawner : MonoBehaviour
         while (true)
         {
             SpawnEnemy();
-            yield return new WaitForSeconds(spawnFrequency);  // Wait for the specified spawn frequency
+
+            // Adjust spawn frequency based on the level
+            float adjustedSpawnFrequency = baseSpawnFrequency / (1 + levelUp.Level * 0.1f); // Example formula
+            yield return new WaitForSeconds(adjustedSpawnFrequency);
         }
     }
 
@@ -41,6 +47,7 @@ public class EnemySpawner : MonoBehaviour
 
         // Instantiate the enemy at the random spawn position
         Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        Debug.Log("enemy spawn");
     }
 
     // Method to get a random spawn position outside the screen
