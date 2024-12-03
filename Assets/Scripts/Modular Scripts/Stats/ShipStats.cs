@@ -11,7 +11,7 @@ public class ShipStats : MonoBehaviour
     public float currentShield;         // Current shield
     public float shieldRegenRate = 5f;  // Shield regeneration per second
     public float shieldRegenCooldown = 3f; // Time before shield starts regenerating after damage
-    public float damageMultiplier = 1.5f;  // Multiplier for outgoing damage
+    public float damageMultiplier = 1f;  // Multiplier for outgoing damage
 
     private float timeSinceLastDamage;  // Time since the last time the ship took damage
  
