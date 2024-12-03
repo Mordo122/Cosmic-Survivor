@@ -43,6 +43,19 @@ public class LevelUp : MonoBehaviour
         {
             Level++;
             exp -= xpCap;
+              Weapon[] weapon = GetComponentsInChildren<Weapon>();
+            for(int i=0;i<weapon.Length;i++){
+            weapon[i].fireRate += weapon[i].fireRate*0.05f;
+            weapon[i].damage += weapon[i].damage*0.025f;
+            }
+
+            ShipStats ship = GetComponent<ShipStats>();
+            ship.maxHealth += ship.maxHealth*0.05f;
+            ship.currentHealth = ship.maxHealth;
+            ship.maxShield += ship.maxShield*0.025f;
+            ship.shieldRegenRate += ship.shieldRegenRate*0.0005f;
+            ship.damageMultiplier += ship.damageMultiplier*0.05f; 
+            
             int xpCapIncrease = 0;
             foreach (LevelRange range in levelRanges)
             {
