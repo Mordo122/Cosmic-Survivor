@@ -3,19 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ShipStats : MonoBehaviour
-{
-    // Ship's Stats
+{    // Ship's Stats
     public float maxHealth = 100f;      // Maximum health
     public float currentHealth;         // Current health
     public float maxShield = 50f;       // Maximum shield
     public float currentShield;         // Current shield
     public float shieldRegenRate = 5f;  // Shield regeneration per second
     public float shieldRegenCooldown = 3f; // Time before shield starts regenerating after damage
-    public float damageMultiplier = 1.5f;  // Multiplier for outgoing damage
+    public float damageMultiplier = 1f;  // Multiplier for outgoing damage
 
-    private float timeSinceLastDamage;  // Time since the last time the ship took damage
- 
-   
+    private float timeSinceLastDamage; 
 
     void Start()
     {

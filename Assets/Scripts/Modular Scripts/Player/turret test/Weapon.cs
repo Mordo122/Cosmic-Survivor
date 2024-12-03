@@ -10,7 +10,7 @@ public class Weapon : MonoBehaviour
     public float fireRate = 1f;         // Time between shots
     public float detectionRange = 10f;  // How far the turret can detect enemies
     public float detectionAngle = 90f;  // The turret's firing arc (in degrees)
-
+    public float damage;
     private float nextFireTime = 0f;    // Time when the weapon can fire again
     private bool isPlayerControlled = false;  // Is the weapon under player control?
 
@@ -55,10 +55,14 @@ public class Weapon : MonoBehaviour
 
     // Shoot the weapon (player-controlled)
     private void Shoot()
-    {
+    {   ShipStats stats = GetComponentInParent<ShipStats>();
+        float multiplier = stats.damageMultiplier;
         // Instantiate the projectile
         GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         Debug.Log("Projectile fired: " + projectile.name + " from " + firePoint.position);
+        Projectile proj = projectile.GetComponent<Projectile>();
+        proj.baseDamage = damage;
+        proj.damage = proj.baseDamage*multiplier;
 
         // Get the Rigidbody2D component from the projectile
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
@@ -85,13 +89,7 @@ public class Weapon : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, angle-90);
 
         // Fire the projectile
-        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-
-        // Set the velocity of the projectile
-        Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
-        projectileRb.velocity = firePoint.up * projectileSpeed;
-
-        nextFireTime = Time.time + 1f / fireRate;
+        Shoot();
 
         Debug.Log("AI shooting at " + target.name);
     }

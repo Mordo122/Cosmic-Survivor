@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float baseDamage = 10f;   // Base damage of the projectile
+    public float baseDamage;   // Base damage of the projectile
     public float damage;             // Final damage (after multiplier)
     public float despawnTime = 5f;   // Time in seconds before the projectile is automatically destroyed
 
