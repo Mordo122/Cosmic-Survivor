@@ -140,6 +140,8 @@ MonoBehaviour:
   baseDamage: 0
   damage: 0
   despawnTime: 1
+  tagsToIgnore:
+  - Player
 --- !u!1 &4967163214836952765
 GameObject:
   m_ObjectHideFlags: 0

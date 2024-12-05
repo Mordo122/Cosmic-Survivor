@@ -2276,6 +2276,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2094747546562890770, guid: 42f587e7b83ad9642804d12877f6ba19, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2094747546628689478, guid: 42f587e7b83ad9642804d12877f6ba19, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2094747547274496304, guid: 42f587e7b83ad9642804d12877f6ba19, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2094747547310499185, guid: 42f587e7b83ad9642804d12877f6ba19, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6910524592217450559, guid: 42f587e7b83ad9642804d12877f6ba19, type: 3}
       propertyPath: xpText
       value: 
@@ -2332,11 +2348,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6910524592217450565, guid: 42f587e7b83ad9642804d12877f6ba19, type: 3}
+      propertyPath: maxHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 6910524592217450572, guid: 42f587e7b83ad9642804d12877f6ba19, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6910524592217450574, guid: 42f587e7b83ad9642804d12877f6ba19, type: 3}
       propertyPath: m_Name
       value: PlayerTest
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6910524592217450555, guid: 42f587e7b83ad9642804d12877f6ba19, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 42f587e7b83ad9642804d12877f6ba19, type: 3}
 --- !u!1001 &7538230732172716890
 PrefabInstance:

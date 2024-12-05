@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
     public float baseDamage;   // Base damage of the projectile
     public float damage;             // Final damage (after multiplier)
     public float despawnTime = 5f;   // Time in seconds before the projectile is automatically destroyed
-
+     public List<string> tagsToIgnore;  // List of tags to ignore collisions with
     void Start()
     {
         // Schedule the projectile to be destroyed after `despawnTime` seconds
@@ -17,6 +17,12 @@ public class Projectile : MonoBehaviour
     // Example method when projectile hits something
     void OnTriggerEnter2D(Collider2D collision)
     {
+         // Check if the tag of the collided object is in the ignore list
+        if (tagsToIgnore != null && tagsToIgnore.Contains(collision.tag))
+        {
+            // Skip processing this collision
+            return;
+        }
         // Try to get the ShipStats component from the object it collided with
         ShipStats targetStats = collision.GetComponent<ShipStats>();
         if (targetStats != null)
