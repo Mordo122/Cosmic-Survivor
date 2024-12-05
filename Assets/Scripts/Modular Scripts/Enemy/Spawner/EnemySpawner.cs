@@ -13,6 +13,9 @@ public class EnemySpawner : MonoBehaviour
     // Reference to the LevelUp script
     public LevelUp levelUp;
 
+    // Modifier for the influence of the level on spawn frequency
+    public float levelUpMultiplier = 0.1f;
+
     void Start()
     {
         // Reference to the main camera
@@ -29,8 +32,8 @@ public class EnemySpawner : MonoBehaviour
         {
             SpawnEnemy();
 
-            // Adjust spawn frequency based on the level
-            float adjustedSpawnFrequency = baseSpawnFrequency / (1 + levelUp.Level * 0.1f); // Example formula
+            // Adjust spawn frequency based on the level and the multiplier
+            float adjustedSpawnFrequency = baseSpawnFrequency / (1 + levelUp.Level * levelUpMultiplier);
             yield return new WaitForSeconds(adjustedSpawnFrequency);
         }
     }
@@ -47,7 +50,7 @@ public class EnemySpawner : MonoBehaviour
 
         // Instantiate the enemy at the random spawn position
         Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-        Debug.Log("enemy spawn");
+        Debug.Log("Enemy spawned");
     }
 
     // Method to get a random spawn position outside the screen

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SmallEnemy
   - Enemy
+  - XP
   layers:
   - Default
   - TransparentFX

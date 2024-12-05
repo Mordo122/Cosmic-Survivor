@@ -394,7 +394,7 @@ MonoBehaviour:
   thrustForce: 8
   maxSpeed: 8
   drag: 0.9
-  rotationSpeed: 180
+  rotationSpeed: 90
 --- !u!114 &2285573981477398892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,9 +409,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 797789209714689714, guid: c5e44e824c2e67744a508797602659b6, type: 3}
   firePoint: {fileID: 2285573981929264537}
-  projectileSpeed: 10
-  shootingInterval: 0.3
-  damage: 0
+  projectileSpeed: 15
+  shootingInterval: 0.6
+  damage: 3
 --- !u!114 &2285573981477398891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,6 +425,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  turnSpeed: 5
+  stopDuration: 1
+  reachThreshold: 1
 --- !u!114 &2285573981477398890
 MonoBehaviour:
   m_ObjectHideFlags: 0

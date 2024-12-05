@@ -142,6 +142,7 @@ MonoBehaviour:
   despawnTime: 1
   tagsToIgnore:
   - Player
+  - XP
 --- !u!1 &4967163214836952765
 GameObject:
   m_ObjectHideFlags: 0
