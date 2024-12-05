@@ -1286,8 +1286,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2285573981477398893, guid: 61eb3a38a69ad5640a8731b822d268d2, type: 3}
+      propertyPath: maxSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2285573981477398893, guid: 61eb3a38a69ad5640a8731b822d268d2, type: 3}
       propertyPath: thrustForce
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2285573981477398896, guid: 61eb3a38a69ad5640a8731b822d268d2, type: 3}
       propertyPath: m_RootOrder
@@ -2458,6 +2462,14 @@ PrefabInstance:
       propertyPath: levelText
       value: 
       objectReference: {fileID: 589842975}
+    - target: {fileID: 6910524592217450560, guid: 42f587e7b83ad9642804d12877f6ba19, type: 3}
+      propertyPath: maxSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6910524592217450560, guid: 42f587e7b83ad9642804d12877f6ba19, type: 3}
+      propertyPath: thrustForce
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6910524592217450562, guid: 42f587e7b83ad9642804d12877f6ba19, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2531,6 +2543,14 @@ PrefabInstance:
     - target: {fileID: 7538230730925783302, guid: 95ce48fc55f373c43aa301cf22d8ec24, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7538230730925783353, guid: 95ce48fc55f373c43aa301cf22d8ec24, type: 3}
+      propertyPath: randomFlySpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7538230730925783354, guid: 95ce48fc55f373c43aa301cf22d8ec24, type: 3}
+      propertyPath: maxSpeed
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7538230730925783359, guid: 95ce48fc55f373c43aa301cf22d8ec24, type: 3}
       propertyPath: m_RootOrder

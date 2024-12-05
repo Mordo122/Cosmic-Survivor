@@ -9,6 +9,7 @@ public class WeaponHandler : MonoBehaviour
     public float projectileSpeed = 10f;
     public float shootingInterval = 1f;
     private float timeSinceLastShot = 0f;
+    public float damage;
 
     private ShipStats shipStats; // Reference to ShipStats
 
@@ -33,7 +34,7 @@ public class WeaponHandler : MonoBehaviour
             // Apply damage multiplier to the projectile's damage
             Projectile projectileScript = projectile.GetComponent<Projectile>();
             if (projectileScript != null && shipStats != null)
-            {
+            {   projectileScript.baseDamage = damage;
                 projectileScript.damage = shipStats.ApplyDamageMultiplier(projectileScript.baseDamage);
             }
 

@@ -49,6 +49,9 @@ public class LevelUp : MonoBehaviour
             weapon[i].damage += weapon[i].damage*0.125f;
             }
 
+            WeaponHandler primary = GetComponent<WeaponHandler>();
+            primary.damage += primary.damage*0.025f;
+
             ShipStats ship = GetComponent<ShipStats>();
             ship.maxHealth += ship.maxHealth*0.05f;
             ship.currentHealth = ship.maxHealth;

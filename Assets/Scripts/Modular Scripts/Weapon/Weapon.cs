@@ -54,7 +54,7 @@ public class Weapon : MonoBehaviour
     }
 
     // Shoot the weapon (player-controlled)
-    private void Shoot()
+    public void Shoot()
     {   ShipStats stats = GetComponentInParent<ShipStats>();
         float multiplier = stats.damageMultiplier;
         // Instantiate the projectile

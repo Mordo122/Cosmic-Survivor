@@ -4457,6 +4457,7 @@ MonoBehaviour:
   firePoint: {fileID: 6910524591250794385}
   projectileSpeed: 10
   shootingInterval: 1
+  damage: 0
 --- !u!1 &6910524591250794386
 GameObject:
   m_ObjectHideFlags: 0
@@ -4610,6 +4611,7 @@ MonoBehaviour:
   firePoint: {fileID: 6910524591422439050}
   projectileSpeed: 10
   shootingInterval: 1
+  damage: 0
 --- !u!1 &6910524591399137156
 GameObject:
   m_ObjectHideFlags: 0
@@ -4877,6 +4879,7 @@ MonoBehaviour:
   firePoint: {fileID: 6910524591399136891}
   projectileSpeed: 20
   shootingInterval: 0.3
+  damage: 20
 --- !u!114 &6910524592217450565
 MonoBehaviour:
   m_ObjectHideFlags: 0
