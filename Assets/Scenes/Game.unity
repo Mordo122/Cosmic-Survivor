@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7538230730925783302, guid: 95ce48fc55f373c43aa301cf22d8ec24, type: 3}
-  baseSpawnFrequency: 30
+  baseSpawnFrequency: 15
   spawnDistance: 5
   levelUp: {fileID: 980693316}
 --- !u!4 &238256882
@@ -1287,7 +1287,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2285573981477398893, guid: 61eb3a38a69ad5640a8731b822d268d2, type: 3}
       propertyPath: thrustForce
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2285573981477398896, guid: 61eb3a38a69ad5640a8731b822d268d2, type: 3}
       propertyPath: m_RootOrder
@@ -1618,10 +1618,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9422fea657181f445a30dc7eaa044d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrustForce: 1
+  thrustForce: 10
   maxSpeed: 5
   drag: 0.9
-  rotationSpeed: 90
+  rotationSpeed: 120
 --- !u!114 &980693308
 MonoBehaviour:
   m_ObjectHideFlags: 0
