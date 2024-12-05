@@ -78,12 +78,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 7704492414737681298}
-  projectilePrefab: {fileID: 797789209714689714, guid: 148b6c3a14b96a443b2f5d7b613ba292, type: 3}
+  projectilePrefab: {fileID: 797789209714689714, guid: da9fae6fd99fd5648bf256fed6463d85, type: 3}
   projectileSpeed: 10
-  damage: 10
   fireRate: 2
   detectionRange: 10
   detectionAngle: 270
+  damage: 10
 --- !u!212 &4824784889063510450
 SpriteRenderer:
   m_ObjectHideFlags: 0
